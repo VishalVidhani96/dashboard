@@ -35,7 +35,7 @@
                     <app-dropdown-menu (selectedValueChange)="onSelectedValueChanged($event)"></app-dropdown-menu>
                 </div>
                 <hr>
-                <app-summary-matrix></app-summary-matrix>
+                <app-summary-matrix [summaryList]="summaryArray"></app-summary-matrix>
                 <app-aggregated-data *ngIf="!isLoading" [selectedAggregate]="SelectedValue" [aggregate_lead]="lead_data" [aggregate_session]="session_data"></app-aggregated-data>
             </div>
         </ng-template>

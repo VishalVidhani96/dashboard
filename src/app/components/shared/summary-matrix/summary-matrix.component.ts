@@ -3,7 +3,7 @@ import { faCircleArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 export interface summary {
    title:string,
-   value:number
+   value:number|string
 }
 
 @Component({

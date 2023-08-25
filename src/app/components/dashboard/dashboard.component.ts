@@ -44,6 +44,8 @@ export class DashboardComponent implements OnInit {
   totalLeads: number = 0
   totalSessions: number = 0
   summaryArray: summary[] = [];
+  bounceRate: number = 0;
+  averageDurationInHours: number = 0;
 
   constructor(private statisticDataService: StatisticDataService) { }
 
@@ -85,6 +87,10 @@ export class DashboardComponent implements OnInit {
         // Calculate total leads and total sessions
         this.caluclateTotalLeadAndSession(leadResponse, sessionResponse);
 
+        this.calculateBounceRate();
+
+        this.calculateAverageSessionDuration(this.session_data.resource)
+
         // Create a summaryArray with the calculated totals
         this.summaryArray = this.createSummaryArray();
       },
@@ -97,6 +103,39 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  calculateAverageSessionDuration(data: any[]) {
+    let totalDuration = 0;
+    let validSessions = 0; // To keep track of the number of valid sessions
+
+    for (const session of data) {
+        const startTimestamp = new Date(session.start).getTime();
+        const endTimestamp = new Date(session.end).getTime();
+
+        // Check if startTimestamp and endTimestamp are valid (not NaN)
+        if (!isNaN(startTimestamp) && !isNaN(endTimestamp)) {
+            // Calculate the duration in milliseconds
+            const duration = endTimestamp - startTimestamp;
+
+            // Add the duration to the total
+            totalDuration += duration;
+            validSessions++;
+        }
+    }
+
+    // Calculate the average session duration in milliseconds
+    const averageDuration = validSessions > 0 ? totalDuration / validSessions : 0;
+    
+    // Convert the average duration to hours
+    const averageDurationInHours = averageDuration / (1000 * 60 * 60); // 1000 milliseconds in a second, 60 seconds in a minute, 60 minutes in an hour
+
+
+    this.averageDurationInHours = averageDurationInHours;
+  }
+
+  calculateBounceRate() {
+    this.bounceRate = ((this.totalSessions - this.totalLeads) / this.totalSessions) * 100;
+  }
+
   private createSummaryArray() {
     return [
       {
@@ -106,6 +145,14 @@ export class DashboardComponent implements OnInit {
       {
         title: 'Total Sessions',
         value: this.totalSessions,
+      },
+      {
+        title: 'Bounce Rate %',
+        value: (this.bounceRate).toFixed(2),
+      },
+      {
+        title: 'Avg Session Duration',
+        value: (this.averageDurationInHours).toFixed(2),
       },
     ];
   }

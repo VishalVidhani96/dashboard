@@ -42,7 +42,6 @@ export class AggregatedDataComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log("in aggregate", this.aggregate_lead)
     this.lineChartData.push({
       data: this.formatData(this.aggregate_session.resource),
       label: 'Session Data',

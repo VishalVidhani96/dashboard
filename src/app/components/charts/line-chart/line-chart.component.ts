@@ -39,7 +39,6 @@ export class LineChartComponent implements AfterViewInit {
 
   createChart(){
     if(!this.chartElemRef) return;
-    console.log("in line chart",this.data);
     this.cleanChart();
     this.chart = new Chart(this.chartElemRef.nativeElement, {
       type: 'line',
