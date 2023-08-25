@@ -12,7 +12,7 @@
         </div>
         <ng-container *ngIf="activatedTabIndex == 0; else tabIndex1">
             <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex justify-content-between align-items-center me-4">
                     <div>
                         <h2 class="fs-1">{{campaigns[activatedTabIndex]}}</h2>
                         <p class="fw-lighter"> Christmas | 1.12.2021 - 24.12.2021</p>
@@ -21,7 +21,7 @@
                 </div>
                 <hr>
                 <app-summary-matrix [summaryList]="summaryArray"></app-summary-matrix>
-                <app-aggregated-data *ngIf="!isLoading" [selectedAggregate]="SelectedValue" [aggregate_lead]="lead_data" [aggregate_session]="session_data"></app-aggregated-data>
+                <app-aggregated-data *ngIf="!isLoading" [selectedAggregate]="SelectedValue" [aggregate_lead]="lead_data" [aggregate_session]="session_data" [summaryList]="summaryArray"></app-aggregated-data>
             </div>
         </ng-container>
 
@@ -36,7 +36,7 @@
                 </div>
                 <hr>
                 <app-summary-matrix [summaryList]="summaryArray"></app-summary-matrix>
-                <app-aggregated-data *ngIf="!isLoading" [selectedAggregate]="SelectedValue" [aggregate_lead]="lead_data" [aggregate_session]="session_data"></app-aggregated-data>
+                <app-aggregated-data *ngIf="!isLoading" [selectedAggregate]="SelectedValue" [aggregate_lead]="lead_data" [aggregate_session]="session_data" [summaryList]="summaryArray"></app-aggregated-data>
             </div>
         </ng-template>
     </div>

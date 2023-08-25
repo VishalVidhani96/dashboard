@@ -1,4 +1,4 @@
-import { Component, AfterViewInit , ViewChild, ElementRef, Input, SimpleChanges} from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, Input, SimpleChanges } from '@angular/core';
 import { ChartType, Chart, ChartDataset, registerables } from 'chart.js';
 
 
@@ -13,16 +13,16 @@ Chart.register(...registerables);
 export class LineChartComponent implements AfterViewInit {
 
 
-  @Input('data')  data!: ChartDataset[];
-  @Input('labels')  labels!: String[]; 
-  chart : Chart | null = null;
+  @Input('data') data!: ChartDataset[];
+  @Input('labels') labels!: String[];
+  chart: Chart | null = null;
   @ViewChild('chart') chartElemRef !: ElementRef;
 
   constructor() {
-   }
+  }
 
-   cleanChart () {
-    if(this.chart instanceof Chart)
+  cleanChart() {
+    if (this.chart instanceof Chart)
       this.chart.destroy();
     this.chart = null;
   }
@@ -32,21 +32,21 @@ export class LineChartComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    
+
     this.createChart();
-      
+
   }
 
-  createChart(){
-    if(!this.chartElemRef) return;
+  createChart() {
+    if (!this.chartElemRef) return;
     this.cleanChart();
     this.chart = new Chart(this.chartElemRef.nativeElement, {
       type: 'line',
       data: {
-        labels : this.labels,
-        datasets : this.data,
+        labels: this.labels,
+        datasets: this.data,
       },
-      options : {
+      options: {
         scales: {
           left: {
             position: 'left',

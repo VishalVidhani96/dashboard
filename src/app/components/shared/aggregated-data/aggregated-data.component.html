@@ -8,8 +8,10 @@
     </div>
     <div class="col-6">
         <div class="card shadow bg-white" style="border-radius: 10px; box-shadow: 20px;">
-            <div class="card-body ">
-                <app-line-chart [data]="lineChartData" [labels]="lineChartLabels"></app-line-chart>
+            <div class="card-body text-center">
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <app-radar-chart [data]="radarChartData"></app-radar-chart>
+                </div>
             </div>
         </div>
     </div>

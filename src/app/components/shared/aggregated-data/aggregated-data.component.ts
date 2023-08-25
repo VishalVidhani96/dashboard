@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
+import { summary } from '../summary-matrix/summary-matrix.component';
 
 @Component({
   selector: 'app-aggregated-data',
@@ -8,7 +9,9 @@ import * as moment from 'moment';
 })
 export class AggregatedDataComponent implements OnInit {
 
-  @Input() selectedAggregate: string = 'day'
+  @Input() summaryList: summary[] = [];
+
+  @Input() selectedAggregate: string = 'day';
 
   @Input() aggregate_lead: IApiResponse = {
     resource: [],
@@ -36,10 +39,10 @@ export class AggregatedDataComponent implements OnInit {
 
   lineChartData: any[] = [];
   lineChartLabels: string[] = [];
+  radarChartData: any[] = [];
 
   constructor() {
   }
-
 
   ngOnInit(): void {
     this.lineChartData.push({
@@ -61,6 +64,8 @@ export class AggregatedDataComponent implements OnInit {
       backgroundColor: 'rgba(87, 60, 120, 1)',
       borderColor: 'rgba(87, 60, 120, 1)',
     })
+
+    this.createRadarData()
   }
 
 
@@ -74,4 +79,12 @@ export class AggregatedDataComponent implements OnInit {
     return data.map((entry) => entry.amount);
   }
 
+
+
+  createRadarData() {
+    this.summaryList.forEach(element => {
+      this.radarChartData.push(Number(element.value));
+    });
+  }
 }
+

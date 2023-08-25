@@ -12,12 +12,12 @@ export class DropdownMenuComponent implements OnInit {
     { label: 'hour' },
     { label: 'week' },
     { label: 'month' }];
-  
-    selectedValue: string = "Select Aggregation";
 
-    @Output() selectedValueChange = new EventEmitter<string>();
-    
-    constructor() { }
+  selectedValue: string = "Select Aggregation";
+
+  @Output() selectedValueChange = new EventEmitter<string>();
+
+  constructor() { }
 
   ngOnInit(): void {
   }

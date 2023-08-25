@@ -14,6 +14,7 @@ import { LineChartComponent } from './components/charts/line-chart/line-chart.co
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DropdownMenuComponent } from './components/shared/dropdown-menu/dropdown-menu.component';
+import { RadarChartComponent } from './components/charts/radar-chart/radar-chart.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { DropdownMenuComponent } from './components/shared/dropdown-menu/dropdow
     TabNavContentComponent,
     LineChartComponent,
     DropdownMenuComponent,
+    RadarChartComponent,
   ],
   imports: [
     BrowserModule,

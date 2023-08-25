@@ -17,7 +17,7 @@ export class TabNavContentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setTab(index:number){
+  setTab(index: number) {
     this.activeTab = index;
     this.onTabChange.emit(this.activeTab);
   }
