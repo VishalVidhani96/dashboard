@@ -1,0 +1,7 @@
+<div class="container-fluid">
+    <ul class="nav nav-pills justify-content-center bg-dark">
+        <li class="nav-item" *ngFor="let item of campaigns; let inx = index" (click)="setTab(inx)">
+            <a class="nav-link" [ngClass]="{ 'active': activeTab === inx }">{{item}}</a>
+        </li>
+    </ul>
+</div>

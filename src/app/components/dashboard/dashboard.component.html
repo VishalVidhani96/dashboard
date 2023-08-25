@@ -1,0 +1,43 @@
+<!-- latest -->
+<div class="container-fluid">
+    <div class="row bg-dark" style="padding: 5px 5px 5px 5px;">
+        <app-tab-nav-content [campaigns]="campaigns" (onTabChange)="tabChange($event)"></app-tab-nav-content>
+    </div>
+    <div class="dashboard-container">
+        <div class="loading-overlay" *ngIf="isLoading">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Loading...</p>
+        </div>
+        <ng-container *ngIf="activatedTabIndex == 0; else tabIndex1">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h2 class="fs-1">{{campaigns[activatedTabIndex]}}</h2>
+                        <p class="fw-lighter"> Christmas | 1.12.2021 - 24.12.2021</p>
+                    </div>
+                    <app-dropdown-menu (selectedValueChange)="onSelectedValueChanged($event)"></app-dropdown-menu>
+                </div>
+                <hr>
+                <app-summary-matrix [summaryList]="summaryArray"></app-summary-matrix>
+                <app-aggregated-data *ngIf="!isLoading" [selectedAggregate]="SelectedValue" [aggregate_lead]="lead_data" [aggregate_session]="session_data"></app-aggregated-data>
+            </div>
+        </ng-container>
+
+        <ng-template  #tabIndex1 >
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h2 class="fs-1">{{campaigns[activatedTabIndex]}}</h2>
+                        <p class="fw-lighter"> Christmas | 1.12.2021 - 24.12.2021</p>
+                    </div>
+                    <app-dropdown-menu (selectedValueChange)="onSelectedValueChanged($event)"></app-dropdown-menu>
+                </div>
+                <hr>
+                <app-summary-matrix></app-summary-matrix>
+                <app-aggregated-data *ngIf="!isLoading" [selectedAggregate]="SelectedValue" [aggregate_lead]="lead_data" [aggregate_session]="session_data"></app-aggregated-data>
+            </div>
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+/* Add this to your component's SCSS file */
+.dashboard-container {
+    position: relative;
+  
+    &.loading {
+      pointer-events: none; /* Disable interactions with content */
+    }
+  
+    .loading-overlay {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  
+      .spinner-border {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  
